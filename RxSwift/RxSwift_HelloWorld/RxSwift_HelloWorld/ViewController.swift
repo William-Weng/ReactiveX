@@ -20,11 +20,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        tableviewTest()
-        // rxTableViewTest()
+        // tableviewTest()
+        rxTableViewTest()
     }
 }
 
+// MARK: - RxSwift
 extension ViewController {
     
     func rxTableViewTest() {
@@ -34,7 +35,7 @@ extension ViewController {
         
         /// tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
         items.bind(to: tableview.rx.items(cellIdentifier: cellIdentifier, cellType: UITableViewCell.self)) { (row, elememt, cell) in
-            cell.textLabel?.text = "\(elememt) @row \(row)"
+            cell.textLabel?.text = "\(elememt) @row \(row) with RxSwift"
         }.disposed(by: disposeBag)
         
         /// func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
@@ -50,6 +51,7 @@ extension ViewController {
     }
 }
 
+// MARK: - UITableViewDataSource / UITableViewDelegate
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableviewTest() { tableview.delegate = self; tableview.dataSource = self }
@@ -58,7 +60,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let rxCell = tableview.dequeueReusableCell(withIdentifier: cellIdentifier) else { return UITableViewCell() }
-        rxCell.textLabel?.text = "\(indexPath.row)"
+        rxCell.textLabel?.text = "\(indexPath.row) with UITableViewDataSource"
         return rxCell
     }
     

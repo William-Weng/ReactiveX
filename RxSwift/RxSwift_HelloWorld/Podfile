@@ -9,5 +9,4 @@ target 'RxSwift_HelloWorld' do
   # Pods for RxSwift_HelloWorld
   pod 'RxSwift'
   pod 'RxCocoa'
-  pod 'RxDataSources'
 end
