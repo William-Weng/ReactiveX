@@ -16,15 +16,9 @@ const paints$ = down$.pipe(
     mergeMap((down) => move$.pipe(takeUntil(up$)))
 )
 
+/// Working (訂閱)
 paints$.subscribe(
-    (value) => { 
-        console.log(value)
-        paint(value)
-    },
-    (error) => {
-        console.log('Error: ', error)
-    },
-    () => { 
-        console.log('complete')
-    }
+    (position) => { paint(position) },
+    (error) => { console.log('Error: ', error) },
+    () => { console.log('complete') }
 )
